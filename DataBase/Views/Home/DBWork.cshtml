@@ -1,0 +1,104 @@
+﻿@using DataBase.Models
+@{
+//Layout = null;
+    ViewBag.Title = "Работа с БД";
+}
+ 
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Список компаний</title>
+</head>
+<body>
+<div>
+    <h3>Список компаний</h3>
+    @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+    {
+        <table border="1">
+            <tr>
+                <td><p></p> </td>
+                <td>
+                    <p>Название</p></td>
+                <td>
+                    <p>E-mail</p></td>
+                <td>
+                    <p>Телефон</p></td>
+                <td>
+                    <p>Сайт</p></td>
+                <td>
+                    <p>Отрасль</p>
+                </td>
+            </tr>
+            @{
+                foreach (var b in ViewBag.Companies)
+                {
+                    <tr>
+                        <td>
+                            <p><input type="radio" value="@b.Id" name="id"/>
+                            </p>
+                        </td>
+                        <td>
+                            <p>@b.name</p>
+                        </td>
+                        <td>
+                            <p>@b.email</p>
+                        </td>
+                        <td>
+                            <p>@b.phone</p>
+                        </td>
+                        <td>
+                            <p>@b.site</p>
+                        </td>
+                        <td>
+                            <p>@b.industry</p>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+        <hr>
+        <table>
+            <tr>
+                <td>
+                    Имя:
+                </td>
+                <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td><input type="text" name="email" /></td>
+            </tr>
+            <tr>
+                <td>
+                    Телефон:
+                </td>
+                <td><input type="text" name="phone" /></td>
+            </tr>
+            <tr>
+                <td>Сайт:</td>
+                <td>
+                    <input type="text" name="site"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Отрасль:</td>
+                <td>
+                    <input type="text" name="industry" />
+                </td>
+            </tr>
+        </table>
+            <table>
+                <tr>
+                <td><button name="action" , value="add">Добавить</button></td>
+                <td><button name="action" , value="remove">Удалить</button></td>
+                    <td><button name="action" , value="update">Обновить</button></td>
+                </tr>
+            </table>
+    }
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿@using DataBase.Models
+@{
+//Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Список компаний</title>
+</head>
+<body>
+    <div>
+        <h3>Список компаний</h3>
+        <table>
+            <tr>
+                <td></td>
+                <td>
+                    <p>Название</p>
+                </td>
+                <td>
+                    <p>E-mail</p>
+                </td>
+                <td>
+                    <p>Телефон</p>
+                </td>
+                <td>
+                    <p>Сайт</p>
+                </td>
+                <td></td>
+            </tr>
+            @{
+                @using (Html.BeginForm("Del", "Home", FormMethod.Post))
+                 {
+                     foreach (var b in ViewBag.Companies)
+                     {
+                         <tr>
+                             <td><input type="radio" name="id" value="@b.Id"/></td>
+                             <td>
+                                 <p>@b.name</p></td>
+                             <td>
+                                 <p>@b.email</p></td>
+                             <td>
+                                 <p>@b.phone</p></td>
+                             <td>
+                                 <p>@b.site</p></td>
+                         </tr>
+                     }
+                    <input type="button" value="Удалить" onclick="location.href='/Home/Del'" ;>
+                 }
+            }
+        </table>}
+    </div>
+</body>
+</html>

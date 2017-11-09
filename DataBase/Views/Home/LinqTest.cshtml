@@ -1,0 +1,95 @@
+﻿@using System.Linq.Expressions
+@using DataBase.Models
+
+@{
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LinqTest</title>
+</head>
+<body>
+<div>
+    <h3>Список фирм по отраслям</h3>
+    <h4>Связь</h4>
+    <table border="1">
+        <tr>
+            <td>
+                <p>Название</p></td>
+            <td>
+                <p>E-mail</p></td>
+            <td>
+                <p>Телефон</p></td>
+            <td>
+                <p>Сайт</p></td>
+        </tr>
+        @{
+            CompanyContext context = new CompanyContext();
+            var comp = from w in context.Companies
+                where (w.industry == "Связь")
+                select new { w.name, w.phone, w.email, w.site };
+            foreach (var t in comp)
+            {
+                <tr>
+                    <td>
+                        <p>@t.name</p>
+                    </td>
+                    <td>
+                        <p>@t.phone</p>
+                    </td>
+                    <td>
+                        <p>@t.email</p>
+                    </td>
+                    <td>
+                        <p>@t.site</p>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <h4>Перевозки</h4>
+    <table border="1">
+        <tr>
+            <td>
+                <p>Название</p>
+            </td>
+            <td>
+                <p>E-mail</p>
+            </td>
+            <td>
+                <p>Телефон</p>
+            </td>
+            <td>
+                <p>Сайт</p>
+            </td>
+        </tr>
+        @{
+            comp = from w in context.Companies
+                where (w.industry == "Перевозки")
+                select new {w.name, w.phone, w.email, w.site};
+            foreach (var k in comp)
+            {
+                <tr>
+                    <td>
+                        <p>@k.name</p>
+                    </td>
+                    <td>
+                        <p>@k.phone</p>
+                    </td>
+                    <td>
+                        <p>@k.email</p>
+                    </td>
+                    <td>
+                        <p>@k.site</p>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+</body>
+</html>
