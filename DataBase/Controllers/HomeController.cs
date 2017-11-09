@@ -27,7 +27,7 @@ namespace DataBase.Controllers
             return View();
         }
         [HttpPost]
-        public void Edit(int id,string name,string email,string phone,string site, string action)
+        public void Edit(int id,string name,string email,string phone,string site, string action, string industry)
         {
             ViewBag.Companies = companies;
             Company company = db.Companies.Where(x => x.Id == id).FirstOrDefault();
@@ -45,7 +45,8 @@ namespace DataBase.Controllers
                 if (name != "") company.name = name;
                 if (email != "") company.email = email;
                 if (phone != "") company.phone = phone;
-                if (site != "") company.site = phone;
+                if (site != "") company.site = site;
+                if (industry!="") company.industry = industry;
             }
         db.SaveChanges();
            Response.Redirect("/Home/DBWork");
